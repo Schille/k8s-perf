@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "k8s-container-perf"
+version = "0.1.0"
+description = "Run a suite of sysbench tests in a Kubernetes cluster and collect the results"
+authors = ["Michael Schilonka <michael@blueshoe.io>"]
+readme = "README.md"
+packages = [{include = "k8s_container_perf"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+kubernetes = "^25.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+types-pyyaml = "^6.0.12.2"
+
+
+[tool.poetry.scripts]
+benchmark = "k8s_container_perf.run:main"
+cleanup = "k8s_container_perf.run:cleanup"
+
+[tool.mypy]
+python_version = "3.9"
+packages = "beiboot"
+ignore_missing_imports = "True"
