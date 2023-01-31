@@ -20,7 +20,7 @@ def get_pod_object(
         ),
     )
 
-    spec = k8s.client.V1PodSpec(containers=[sysbench_container], restart_policy="Never")
+    spec = k8s.client.V1PodSpec(containers=[sysbench_container], restart_policy="Never", node_selector=runner.node_selector)
 
     _labels = runner.LABELS.copy()
     _labels.update({"sysbench-test": test.__class__.__name__})

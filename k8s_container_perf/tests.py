@@ -144,7 +144,6 @@ class FileIOBenchmark(Benchmark):
             events (avg/stddev):           41690.0000/0.00
             execution time (avg/stddev):   99.9417/0.00
         """
-        print(output)
         throughput_read = re.findall(r"read, MiB/s:\s*(.*)\s", output)[0]
         throughput_write = re.findall(r"written, MiB/s:\s*(.*)\s", output)[0]
         fileops_read = re.findall(r"reads/s:\s*(.*)\s", output)[0]

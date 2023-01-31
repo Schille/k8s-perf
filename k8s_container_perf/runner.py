@@ -1,4 +1,5 @@
 from pprint import pprint
+from typing import Dict, Optional
 import kubernetes as k8s
 
 from .tests import CPUBenchmark, MemoryBenchmark, FileIOBenchmark
@@ -10,6 +11,9 @@ class BenchmarkRunner:
     LABELS = {"sysbench-runner": "true"}
 
     BENCHMARKS = {"cpu": CPUBenchmark(), "memory": MemoryBenchmark(), "fileio": FileIOBenchmark()}
+
+    def __init__(self, node_selector: Optional[Dict[str, str]] = None) -> None:
+        self.node_selector = node_selector
 
     def cleanup(self):
         core_api = k8s.client.CoreV1Api()

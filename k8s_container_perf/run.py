@@ -1,11 +1,20 @@
 from pprint import pprint
 import json
+import sys
 
 import kubernetes as k8s
 from .runner import BenchmarkRunner
 
 
-def main():
+def main(args=sys.argv):
+
+    # todo add proper arg parsing 
+    try:
+        node_selector = args[1]
+        node_selector = {node_selector.split(":")[0]: node_selector.split(":")[1]}
+    except:
+        node_selector = None
+    
     k8s.config.load_kube_config()
     runner = BenchmarkRunner()
     try:
